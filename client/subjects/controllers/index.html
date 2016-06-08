@@ -11,22 +11,67 @@
   
   <body ng-app="artoo">
     <appbar></appbar>
-    
-    <!-- load the item controller -->
-    
+  
+  <div ng-controller="PlayerCtrl">
+    <div>Player name: {{::player.name}}</div>
+    <div>Player hp: {{player.hp}}</div>
+    <div>Is player dead? {{isDead()}} </div>
+    <div>Level: {{player.level}} </div>
+    <div>Exp: {{player.exp}} </div>
+    <button ng-click="takeDamage(30)">Take hit!</button>
+    <button ng-click="levelUp()">Level up!</button>
+    <button ng-click="gainExp(7)">Increase Exp!</button>
+  </div>  
+
     <!-- bind the item controller to an element -->
     
+  <div ng-hide="!item" ng-controller="ItemsCtrl"><!--convenzione nei controller pascal case -->
+    
     <!-- interpolate the data to the view -->
+    <div>
+      Name: <span ng-bind="item.name"></span>
+    </div>
+    
+    <div ng-show="visibleDescription">
+      Description: <span ng-bind="item.description"></span>
+    </div>
+    
+      <button ng-click="toggleDescription()">Toggle description</button>
+    
+    <div>
+      Slots: <span ng-bind="item.slots"></span>
+    </div>
+    <div>
+      Fits in bag? {{checkIfFits(item, 5)}}
+    </div>
+    
+    <div>
+      <img ng-hide="!item" ng-src="{{item.image}}" alt=""/>
+    </div>
+    
+      <button ng-click="dispose()">Dispose</button>
+    
+  </div>
+  
+
     
     <!-- understanding the scope -->
     
     <!-- add handles for behaviours -->
     
+    
+    
     <!-- create another controller for the player for managing data such as personal and game info -->
+   
     
     <script src="node_modules/angular/angular.min.js"></script>
     <script src="ui/appbar/appbar.js"></script>
-
     <script src="subjects/controllers/app.js"></script>
+    
+    
+    <!-- load the item controller -->
+    <script type="text/javascript" src="subjects/controllers/item.controller.js"></script>
+    <script src="subjects/controllers/player.controller.js"></script>
+    
   </body>
 </html>
