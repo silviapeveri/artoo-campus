@@ -36,11 +36,12 @@
       Description: <span ng-bind="item.description"></span>
     </div>
     
-      <button ng-click="toggleDescription()">Toggle description</button>
+    <button ng-click="toggleDescription()">Toggle description</button>
     
     <div>
       Slots: <span ng-bind="item.slots"></span>
     </div>
+    
     <div>
       Fits in bag? {{checkIfFits(item, 5)}}
     </div>
@@ -49,7 +50,7 @@
       <img ng-hide="!item" ng-src="{{item.image}}" alt=""/>
     </div>
     
-      <button ng-click="dispose()">Dispose</button>
+    <button ng-click="dispose()">Dispose</button>
     
   </div>
   
