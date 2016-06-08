@@ -8,7 +8,7 @@ angular.module('artoo').controller('PlayerCtrl', ($scope) => {
    };
     // take damage
     $scope.takeDamage = (damage) => {
-       $scope.player.hp =  ($scope.player.hp <= damage) ? $scope.player.hp - damage : 0;
+       $scope.player.hp =  ($scope.player.hp <= damage) ? 0 : $scope.player.hp - damage;
     };
     
     // is dead?
