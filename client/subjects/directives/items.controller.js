@@ -40,6 +40,12 @@ angular.module('artoo').controller('ItemsCtrl', function ($scope){
         
         $scope.isSuitable = (item, race) => {
             return item.races.indexOf(race) > -1;
-            
+        };
+        
+        $scope.buy = (item) => {
+            console.info('just bought this item: ' + item.name);
+            $scope.items.forEach((singleItem) => { 
+                if (singleItem.code === item.code) singleItem.availability -= 1;
+            });
         };
 });
