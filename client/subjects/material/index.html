@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width">
     <title>Artoo Campus - Angular Material</title>
+    <link rel="stylesheet" href="node_modules/angular-material/angular-material.min.css">
     <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="ui/appbar/appbar.css">
     <!-- load material css -->
@@ -13,21 +14,82 @@
   <body ng-app="artoo">
     <appbar></appbar>
     
+    <div ng-controller="MaterialCtrl">
+      <div>Min date: {{minDate}}</div>
+      <md-datepicker md-date-filter="onlyWeekends" md-min-date="minDate" ng-model="myDate" md-placeholder="Enter date"></md-datepicker>
+      <div>Selected date: {{myDate}}</div>
+    
+    <form layout="column" name="form" novalidate>
+      
+        <md-input-container class="md-block">
+          <label>Name</label>
+          <input name="username" type="email" ng-model="user.username" md-maxlength="8" required>
+          
+          <div ng-messages="form.username.$error">
+            <div ng-message="required" class="my-message">You must enter a valid username.</div>
+          </div>
+        </md-input-container>
+        
+        <md-input-container class="md-block">
+          <label>Age</label>
+          <input name="age" type="number" ng-model="user.age" required>
+          
+          <div ng-messages="form.age.$error">
+            <div ng-message="required" class="my-message">You must enter a number here.</div>
+          </div>
+        </md-input-container>
+        
+        <md-input-container class="md-block">
+          <label>Zip code</label>
+          <input name="zip" ng-model="user.zip" ng-pattern="/^[0-9]{5}$/" md-maxlength="5" required>
+          
+          <div ng-messages="form.zip.$error">
+            <div ng-messages="number" class="my-message">You must enter a number here.</div>
+            <div ng-messages="required" class="my-message">Zip field is required.</div>
+            <div ng-messages="pattern" class="my-message">Zip field is requires 5 digits.</div>
+          </div>
+        </md-input-container>
+     
+    </form>
+    </div>
+    
+   
+    
     <!-- check the typography -->
-    
+    <h1 class="md-display-2">I'm showing md-display-2</h1>
+    <h1 class="md-title">I'm a title</h1>
+    <h1 class="md-body-1">I'm a md-body-1</h1>
+    <md-button class="md-button md-raised">Button</md-button>
+     <md-button class="md-button md-raised md-accent">Button</md-button>
     <!-- setup a theme -->
-    
     <!-- practice the layout -->
+    
+    <div layout="row" layout-wrap layout-padding layout-margin>
+      <div style="background: orange" flex-offset="10">child1 </div>
+      <div style="background: green" flex="50">child2</div>
+      <div style="background: blue" flex="50">child3</div>
+    </div>
+    
+     <div layout="column">
+      <div>child1</div>
+      <div>child2</div>
+      <div>child3</div>
+    </div>
     
     <!-- play with some directives & services -->
     
     <script src="node_modules/angular/angular.min.js"></script>
     <!-- load aria -->
+    <script src="node_modules/angular-aria/angular-aria.min.js"></script>
     <!-- load animation -->
+    <script src="node_modules/angular-animate/angular-animate.min.js"></script>
     <!-- load messages -->
+    <script src="node_modules/angular-messages/angular-messages.min.js"></script>
     <!-- load material -->
+    <script src="node_modules/angular-material/angular-material.min.js"></script>
     
     <script src="ui/appbar/appbar.js"></script>
     <script src="subjects/material/app.js"></script>
+    <script src="subjects/material/material.controller.js"></script>
   </body>
 </html>
