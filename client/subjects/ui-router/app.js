@@ -13,6 +13,28 @@ angular.module('artoo', [
       template:'<h1>Home</h1>',
       url: '/'
     })
+    
+    .state('items', {
+      templateUrl:'subjects/ui-router/items/items.html',
+      controller: 'ItemsCtrl',
+      controllerAs: 'ItemsCtrl',
+      url: '/items',
+    })
+    
+    .state('items-details', {
+      controller: 'ItemsDetailsCtrl',
+      templateUrl: 'subjects/ui-router/items/items-details.html',
+      url: '/items/:code',
+      // resolve: {
+      //   item: function ($stateParams, ItemSrv) {
+      //     return ItemsSrv.getDetails($stateParams.code);
+      //   },
+      // },
+      // onEnter: function () {
+      //   if (!item) $state.go('items');
+      // },
+    })
+    
     .state('contacts', {
       abstract: true,
       controller: 'ContactsCtrl',
