@@ -1,15 +1,19 @@
-module.exports = function() {
+module.exports = function () {
+  
   function query(req, res) {
-    console.log(req, timeRequest);
-     res.status(200).send([{name:'ascia bipenne', description: 'blablabla armi blablabla armi'}]);
+    console.log(req.timeRequest);
+    res.status(200).send([{name: 'Ascia Bipenne', description: 'A nice description.'}]);
   }
   
   function save(req, res) {
     console.log(req.body);
-    res.status(201).send();
+    res.status(201).send({result: 'Item ' + req.body.name + ' created!'});
   }
-    return {
-      query: query,
-      save: save,
-    };
+  
+  
+  // public API
+  return {
+    query: query,
+    save: save,
+  };
 }

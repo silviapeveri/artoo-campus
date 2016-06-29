@@ -6,6 +6,8 @@ const cookieParser = require('cookie-parser');
 const path = require('path');
 const development = (process.env.NODE_ENV === 'production') ? false : true;
 const settings = require('./settings');
+const expressValidator = require('express-validator');
+const helmet = require('helmet');
 
 const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
@@ -30,11 +32,16 @@ app.use(bodyParser.urlencoded({extended: false}));
 // setup the body parser to accept json and populate req.body
 app.use(bodyParser.json());
 
+// express-validator to control inputs coming from http requests (VALIDATION + SANITIZATION)
+app.use(expressValidator());
+
 // use HTTP verbs such as PUT or DELETE where the client doesn't support others
 app.use(methodOverride());
 
 // parse the cookie header and populate req.cookies
 app.use(cookieParser());
+
+app.use(helmet());
 
 // serve static files
 app.use('/public', express.static(path.join(__dirname, '..', 'public')));
@@ -51,12 +58,12 @@ app.use('/', express.static(path.join(__dirname, '..', 'client')));
 
 // routers + controllers
 
-app.use(require('./exercises/middlewares/timeRequest'));
-
 // define here your API
-app.use('/api/items', require('./exercises/middlewares/timeRequest'), 
-  require('./exercises/middlewares/mean'), require('./exercises/items').router);
-app.use('/api/users', require('./exercises/users').router);
+//app.use('/api/items', require('./exercises/middlewares/timeRequest'), require('./exercises/middlewares/mean'), require('./exercises/items').router);
+//app.use('/api/users', require('./exercises/users').router);
+app.use('/api/contacts', require('./project/contacts').router);
+app.use('/api/events', require('./project/events').router);
+
 
 // handle not-found resources
 app.get('/:url(api|node_modules|public)/*', (req, res) => {
